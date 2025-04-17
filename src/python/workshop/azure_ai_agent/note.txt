@@ -1,0 +1,4 @@
+Porting source code from:
+https://github.com/microsoft/semantic-kernel/tree/main/python/samples/getting_started_with_agents/azure_ai_agent
+Git commit id: 12851923bca95bf123ba721b53525e3b2ade6777
+Apr 11, 2025
