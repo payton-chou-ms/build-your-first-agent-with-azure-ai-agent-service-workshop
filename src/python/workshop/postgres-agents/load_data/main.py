@@ -1,22 +1,28 @@
 import psycopg2
 import csv
-import json
 import os
 import sys
-from dotenv import load_dotenv
+# 使用預設路徑載入 .env
+from dotenv import load_dotenv, find_dotenv
 
-# Load environment variables
-load_dotenv("../.env")
+# Load environment variables from project root and override existing OS env vars
+load_dotenv(find_dotenv(), override=True)
 
 # Increase the maximum field size limit
-csv.field_size_limit(sys.maxsize)
+try:
+    csv.field_size_limit(sys.maxsize)
+except OverflowError:
+    csv.field_size_limit(2**31 - 1)
 
 # Fetch the connection string from the environment variable
 CONN_STR = os.getenv("AZURE_PG_CONNECTION")
 
 # Fetch the OpenAI settings from environment variables
 AZURE_OPENAI_API_KEY = os.getenv("AZURE_OPENAI_API_KEY")
+# Fetch and normalize the endpoint (remove any trailing slash)
 AZURE_OPENAI_ENDPOINT = os.getenv("AZURE_OPENAI_ENDPOINT")
+if AZURE_OPENAI_ENDPOINT:
+    AZURE_OPENAI_ENDPOINT = AZURE_OPENAI_ENDPOINT.rstrip("/")
 
 # Fetch the Embedding model name from environment variables
 EMBEDDING_MODEL_NAME = os.getenv("EMBEDDING_MODEL_NAME")
@@ -67,7 +73,8 @@ def create_tables(cur):
 
 # Load data from the CSV file into the temp_cases table
 def ingest_data_to_tables(cur):
-    with open('cases.csv', 'r') as f:
+    csv_path = 'cases.csv'
+    with open(csv_path, newline='', encoding='utf-8') as f:
         reader = csv.DictReader(f)
         for row in reader:
             json_data = row['data']
