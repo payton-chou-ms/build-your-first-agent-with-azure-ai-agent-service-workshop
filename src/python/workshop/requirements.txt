@@ -11,4 +11,3 @@ matplotlib
 xhtml2pdf
 markdown
 nixtla
-sqlite3
