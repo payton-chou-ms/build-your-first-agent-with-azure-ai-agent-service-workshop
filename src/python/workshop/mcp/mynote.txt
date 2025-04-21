@@ -1,3 +1,6 @@
+# Create Agent
+- python my-project-agent.py
+
 # Azure Agent MCP Server
 ## 注意事項
 請更新.env的內容, 把這agent設定正確
@@ -21,11 +24,13 @@ $ python __main__.py
                 "command": "C:\\Users\\chihengchou\\Downloads\\work\\work\\mcp-foundry\\.venv\\Scripts\\python.exe",
                 "_command": "python",
                 "args": [
-                    "/Users/chihengchou/Downloads/work/work/mcp-foundry/src/python/azure_agent_mcp_server/__main__.py"
+                    "/Users/chihengchou/Downloads/work/work/build-your-first-agent-with-azure-ai-agent-service-workshop/src/python/workshop/mcp/azure_agent_mcp_server/__main__.py"
                 ]
             }
         }
     }
+
+#                    "/Users/chihengchou/Downloads/work/work/mcp-foundry/src/python/azure_agent_mcp_server/__main__.py"
 
 ## 在 VS code 中使用
 - 請在Copilot Chat中選擇 agent mode

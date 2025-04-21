@@ -2,6 +2,7 @@
 -r src/python/workshop/postgres-agents/requirements.txt
 -r src/python/workshop/azure_ai_agent\ (sk)/requirements.txt
 -r src/python/workshop/autogen/00_set_up/requirements.txt
+-r src/python/workshop/mcp/requirements.txt
 black
 ruff
 pre-commit
